@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class BaseService < T extends BaseModel,D extends BaseDao<T> >{
+public class BaseService < T extends BaseModel,D extends BaseDao< T > >{
 
     @Autowired
     protected D dao;
@@ -35,7 +35,7 @@ public class BaseService < T extends BaseModel,D extends BaseDao<T> >{
      */
     public void save(T target){
         if(target.getId()!=null&&!target.getId().equals("")){
-            target.preUpdata();
+            target.preUpdate();
             dao.update(target);
         }else {
             target.preInsert();
