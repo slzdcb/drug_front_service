@@ -29,7 +29,7 @@
        LEFT JOIN depart_info d
        ON d.id = e.depart_id
        <where>
-           AND e.depart_id!='1'
+           AND d.del_flag!='1'
            <if test="username!=null and username!=''">
                AND e.username = #{username}
            </if>
