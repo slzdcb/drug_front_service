@@ -9,6 +9,8 @@ public class DrugManageServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DrugManageServiceApplication.class, args);
+        BaseModel baseModel = new BaseModel();
+        baseModel.getId();
     }
 
 }
