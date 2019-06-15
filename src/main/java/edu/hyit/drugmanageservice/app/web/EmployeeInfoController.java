@@ -31,4 +31,10 @@ public class EmployeeInfoController {
 
         return null;
     }
+
+    @PostMapping("/api/employee/save")
+    public String save(@RequestBody EmployeeInfo employeeInfo){
+        employeeInfoService.save(employeeInfo);
+        return "{\"start\":\"success\"}";
+    }
 }

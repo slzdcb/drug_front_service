@@ -44,4 +44,11 @@
            </if>
        </where>
     </select>
+
+    <insert id="inset">
+        INSERT INTO employee_info
+        (ID, USERNAME, PASSWORD, NAME, DEPART_ID,PHONE, UPDATE_TIME)
+        VALUE
+        (#{id},#{username},#{password},#{name},#{departInfo.id},#{phone},#{updateTime})
+    </insert>
 </mapper>
