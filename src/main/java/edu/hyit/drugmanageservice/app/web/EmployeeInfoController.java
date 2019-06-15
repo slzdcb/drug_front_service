@@ -1,11 +1,10 @@
 package edu.hyit.drugmanageservice.app.web;
 
+import com.github.pagehelper.PageInfo;
 import edu.hyit.drugmanageservice.app.model.EmployeeInfo;
 import edu.hyit.drugmanageservice.app.service.EmployeeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -35,6 +34,20 @@ public class EmployeeInfoController {
     @PostMapping("/api/employee/save")
     public String save(@RequestBody EmployeeInfo employeeInfo){
         employeeInfoService.save(employeeInfo);
-        return "{\"start\":\"success\"}";
+        return "{\"status\":\"success\"}";
+    }
+    //分页查询
+    @PostMapping("/api/employee/findList")
+    public PageInfo<EmployeeInfo> findList(Integer pageNum,Integer pageSize,EmployeeInfo employeeInfo){
+        return employeeInfoService.page(employeeInfo,pageNum,pageSize);
+
+    }
+    @DeleteMapping("api/employee/delete/{id}")
+    public String delete(@PathVariable("id") String id){
+        EmployeeInfo condition = new EmployeeInfo();
+        condition.setId(id);
+        employeeInfoService.delete(condition);
+        return "{\"status\":\"success\"}";
+
     }
 }

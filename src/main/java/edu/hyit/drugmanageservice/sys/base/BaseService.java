@@ -1,5 +1,7 @@
 package edu.hyit.drugmanageservice.sys.base;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -43,4 +45,15 @@ public class BaseService < T extends BaseModel,D extends BaseDao< T > >{
         }
     }
 
+    /**
+     * 分页查询
+     * @param condition
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    //pageInfo = PageHelper.startPage(1, 10).doSelectPageInfo(() -> countryMapper.selectGroupBy());
+    public PageInfo<T> page(T condition,Integer pageNum,Integer pageSize){
+        return PageHelper.startPage(pageNum,pageSize).doSelectPageInfo(() -> dao.findList(condition));
+    }
 }

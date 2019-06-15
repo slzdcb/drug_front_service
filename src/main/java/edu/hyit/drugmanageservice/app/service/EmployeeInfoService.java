@@ -7,5 +7,4 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeInfoService extends BaseService<EmployeeInfo, EmployeeInfoDao> {
-
 }

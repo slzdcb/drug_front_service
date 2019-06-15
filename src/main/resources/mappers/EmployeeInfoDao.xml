@@ -45,10 +45,41 @@
        </where>
     </select>
 
+    <select id="findList" resultMap="employeeInfoMap">
+        SELECT
+        e.*,
+        d.depart_name,
+        d.depart_code,
+        d.del_flag AS "d_del_flag"
+        FROM employee_info e
+        LEFT JOIN depart_info d
+        ON d.id = e.depart_id
+        <where>
+            AND e.del_flag!='1'
+            <if test="username!=null and username!=''">
+                AND e.username = #{username}
+            </if>
+            <if test="password!=null and password!=''">
+                AND e.password = #{password}
+            </if>
+            <if test="name!=null and name!=''">
+                AND e.name = #{name}
+            </if>
+            <if test="phone!=null and phone!=''">
+                AND e.phone = #{phone}
+            </if>
+        </where>
+        ORDER BY e.update_time DESC
+    </select>
+
     <insert id="inset">
         INSERT INTO employee_info
         (ID, USERNAME, PASSWORD, NAME, DEPART_ID,PHONE, UPDATE_TIME)
         VALUE
         (#{id},#{username},#{password},#{name},#{departInfo.id},#{phone},#{updateTime})
     </insert>
+
+    <update id="delete">
+        UPDATE employee_info SET del_flag='1' WHERE id = #{id}
+    </update>
 </mapper>

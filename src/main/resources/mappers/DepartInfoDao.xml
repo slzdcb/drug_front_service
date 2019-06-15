@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hyit.drugmanageservice.app.dao.DepartInfoDao">
+<select id="findAll" resultType="edu.hyit.drugmanageservice.app.model.DepartInfo">
+    SELECT
+        id,
+        depart_code AS "departCode",
+        depart_name AS "departName"
+     FROM depart_info
+     WHERE del_flag !='1'
+</select>
+
+</mapper>
