@@ -82,4 +82,17 @@
     <update id="delete">
         UPDATE employee_info SET del_flag='1' WHERE id = #{id}
     </update>
+
+    <update id="update">
+        UPDATE employee_info
+        SET
+            username=#{username},
+            name=#{name},
+            password=#{password},
+            phone=#{phone},
+            update_time=#{updateTime},
+            depart_id=#{departInfo.id}
+        WHERE id = #{id}
+
+    </update>
 </mapper>

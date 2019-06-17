@@ -30,6 +30,11 @@ public class EmployeeInfoController {
 
         return null;
     }
+    @RequestMapping("api/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "{\"status\":\"success\"}";
+    }
 
     @PostMapping("/api/employee/save")
     public String save(@RequestBody EmployeeInfo employeeInfo){
